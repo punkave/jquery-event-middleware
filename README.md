@@ -63,3 +63,16 @@ $('body').onIf('touchstart', '.button', isTouch, myButtonHandler);
 
 Note that boolean variables are passed by value, not reference; if the `isTouch` property in the example above was to change at some point the event would still not fire. For this you would wrap it in a function that can return the most up-to-date value.
 
+### Passing the event object
+
+Middleware functions are given jQuery's event object, allowing your middleware functions to act based on the nature of the event or even modify the event object itself.
+
+```javascript
+function middleware(e) {
+  e.myNewProperty = 'hello';
+}
+
+$('.button').on('click', middleware, function(e) {
+  console.log(e.myNewProperty); // logs 'hello'
+});
+```
