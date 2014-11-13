@@ -83,7 +83,7 @@ function middleware(e) {
   e.myNewProperty = 'hello';
 }
 
-$('.button').on('click', middleware1, function(e) {
+$('.button').on('click', middleware, function(e) {
   console.log(e.myNewProperty); // logs 'hello'
 });
 ```
