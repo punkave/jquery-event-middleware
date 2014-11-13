@@ -68,11 +68,22 @@ Note that boolean variables are passed by value, not reference; if the `isTouch`
 Middleware functions are given jQuery's event object, allowing your middleware functions to act based on the nature of the event or even modify the event object itself.
 
 ```javascript
+function shiftKey(e) {
+  return e.shiftKey;
+}
+
+// only fire the click event if the shift key was held
+$('.button').on('click', shiftKey, function(e) {
+  console.log('shift click!');
+});
+```
+
+```javascript
 function middleware(e) {
   e.myNewProperty = 'hello';
 }
 
-$('.button').on('click', middleware, function(e) {
+$('.button').on('click', middleware1, function(e) {
   console.log(e.myNewProperty); // logs 'hello'
 });
 ```
