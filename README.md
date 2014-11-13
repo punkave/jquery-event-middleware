@@ -18,11 +18,11 @@ The syntax is inspired by the [Express.js](https://github.com/strongloop/express
 
 ## API
 
-##### `$().onIf(eventType, [middleware1, middleware2, ...] callback)`
+#### `$().onIf(eventType, [middleware,] callback)`
 
 Calling `$.onIf` with no middleware is equivalent to calling `$.on` normally.
 
-##### `$().onIf(eventType, selector, [middleware1, middleware2, ...] callback)`
+#### `$().onIf(eventType, selector, [middleware,] callback)`
 
 You can provide a selector as the second argument in order to filter down the elements that fire the event, just as you can with `$.on`.
 
