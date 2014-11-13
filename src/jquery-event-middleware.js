@@ -26,7 +26,7 @@
       var noBreaks = true;
 
       for(var i = 0; i < middleware.length; i++) {
-        if( middleware[i](e) === false ) {
+        if((typeof middleware[i] === 'function' && middleware[i](e) === false) || (!middleware[i])) {
           noBreaks = false;
           break;
         }
