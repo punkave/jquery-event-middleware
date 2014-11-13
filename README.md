@@ -28,7 +28,7 @@ You can provide a selector as the second argument in order to filter down the el
 
 ### Middleware
 
-Middleware can come in the form of a function or a variable. If the function returns `false` or the variable is _falsey_ the final event is not fired.
+Middleware can come in the form of a function or a variable. If the function explicitly returns `false` or the variable is _falsey_ the final event is not fired.
 
 Here we use middleware to do a little field validation:
 
@@ -50,15 +50,15 @@ Here we use a boolean variable set on page load to determine which events to bin
 // set a boolean variable that tracks whether or not this device is touch-capable.
 var isTouch = ('ontouchstart' in document.documentElement);
 
+function myButtonHandler(e) {
+  console.log('The button was pressed.');
+}
+
 // for desktops
-$('body').onIf('click', '.button', !isTouch, function(e) {
-  console.log('click!');
-});
+$('body').onIf('click', '.button', !isTouch, myButtonHandler);
 
 // for touch devices
-$('body').onIf('touchstart', isTouch, function(e) {
-  console.log('touch start!');
-});
+$('body').onIf('touchstart', '.button', isTouch, myButtonHandler);
 ```
 
 Note that boolean variables are passed by value, not reference; if the `isTouch` property in the example above was to change at some point the event would still not fire. For this you would wrap it in a function that can return the most up-to-date value.
